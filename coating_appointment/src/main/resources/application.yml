@@ -1,0 +1,36 @@
+server:
+  port: 10002
+
+spring:
+  application:
+    name: coating-appointment
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/coating?characterEncoding=utf-8
+    username: root
+    password: "*CHU_shi_YAN@128"
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS       默认
+    #JsonInclude.Include.NON_DEFAULT   属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY     属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL      属性为NULL  不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10000/eureka
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  config:
+    key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
+    ttl: 3600000

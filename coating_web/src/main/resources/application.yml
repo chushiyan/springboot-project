@@ -1,0 +1,25 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: coating-manager
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10000/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  config:
+    key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
+
+zuul:   #  网关路由
+  routes:
+    coating-appointment:
+      path: /appointment/**
+      serviceId: coating-appointment
+
+    coating-picture:
+      path: /picture/**
+      serviceId: coating-picture

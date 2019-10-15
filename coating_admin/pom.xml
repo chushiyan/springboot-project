@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>coating_parent</artifactId>
+        <groupId>com.kennatech</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>coating_admin</artifactId>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <!--使用2.9.2，有几次报错：java.lang.NoSuchMethodError: com.google.common.collect.FluentIterable.concat-->
+            <!--<version>2.9.2</version>-->
+            <version>2.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <!--<version>2.9.2</version>-->
+            <version>2.8.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.kennatech</groupId>
+            <artifactId>coating_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
+
+
+    <!--docker maven插件-->
+    <build>
+        <!--给当前工程起个名称-->
+        <finalName>admin_app</finalName>
+        <plugins>
+
+            <!--  一、作为一个基础插价-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--  二、docker的maven插件，官网：https://github.com/spotify/docker-maven-plugin -->
+            <!--有了这个插件，maven才能和docker相连-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <!-- 对打包的镜像进行标记 -->
+                    <!-- 私有仓库ip端口， ${project.artifactId}取得就是本pom文件中设置的值-->
+                    <imageName>95.179.249.172:5000/${project.artifactId}:${project.version}</imageName>
+
+                    <!-- 自己搭建的名为jdk1.8的镜像（CentOS + jdk）-->
+                    <baseImage>jdk1.8</baseImage>
+
+                    <!-- 进入容器后执行的命令：打包为jar包 -->
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}
+                            </directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                    <!-- 私有仓库 端口 ，本插件就通过该url访问docker -->
+                    <!-- 端口对应于 在 /lib/systemd/system/docker.service文件添加的参数：
+                    ExecStart=后添加配置 -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock -->
+                    <dockerHost>http://95.179.249.172:2375</dockerHost>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
