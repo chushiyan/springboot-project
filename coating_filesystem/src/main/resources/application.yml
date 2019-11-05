@@ -37,7 +37,7 @@ fastdfs:
   connect_timeout_in_millisecond: 5000
   network_timeout_in_millisecond: 30000
   charset: UTF-8
-  tracker_servers: 45.76.46.123:22122
-  nginx_url: http://45.76.46.123:8888/  # 注意末尾要加上/ ，因为fastdfs返回的文件id开头没有/
+  tracker_servers: 127.0.0.1:22122
+  nginx_url: http://127.0.0.1:8888/  # 注意末尾要加上/ ，因为fastdfs返回的文件id开头没有/
 
 
