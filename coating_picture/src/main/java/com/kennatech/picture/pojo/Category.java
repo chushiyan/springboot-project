@@ -1,8 +1,12 @@
 package com.kennatech.picture.pojo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Category implements Serializable {
@@ -11,9 +15,19 @@ public class Category implements Serializable {
     private String id;   //          varchar(100) not null,
     private String name;   //          varchar(50) comment '大类的名称',
     private String title;   //          varchar(50) comment '标题(大类名称下的一行信息)',
-    private String iconUrl;   //          varchar(200) comment '大类的图标url',
+
+    @Column(name = "picture_url")
+    private String pictureUrl;   //          varchar(200) comment '大类的图标url',
     private String description;   //          varchar(1000),
+    private String rank;
     private String status;   //          int default 1 comment '状态，0：弃用    1：使用中',
+
+    @OneToMany(mappedBy = "category")
+    private Set<Picture> pictures = new HashSet<Picture>();
+
+    @OneToMany(mappedBy = "parent")
+    private Set<Type> types = new HashSet<Type>();
+
 
     public Category() {
     }
@@ -42,12 +56,28 @@ public class Category implements Serializable {
         this.title = title;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     public String getDescription() {

@@ -1,0 +1,29 @@
+server:
+  port: 10007
+
+spring:
+  application:
+    name: coating-tag
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/coating?characterEncoding=utf-8
+    username: root
+    password: "@YHDJ_4587+jidk#dhie&"
+
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10000/eureka
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  config:
+    key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
+    ttl: 1800000

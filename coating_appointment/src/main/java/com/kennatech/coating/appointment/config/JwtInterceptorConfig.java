@@ -1,6 +1,6 @@
 package com.kennatech.coating.appointment.config;
 
-import com.kennatech.coating.appointment.interceptor.JwtInterceptor;
+import com.kennatech.coating.utils.JwtInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

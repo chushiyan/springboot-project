@@ -20,7 +20,7 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/admin")
+//@RequestMapping("/admin")
 @Api(value = "管理员接口", description = "提供管理员的增删改查")
 public class AdminController {
 
@@ -80,7 +80,7 @@ public class AdminController {
     }
 
     // 删除普通管理员
-    // 只有超级管理员才有权限查询所有管理员
+    // 只有超级管理员才有权限删除普通管理员
     @RequestMapping(value = "/{adminId}", method = RequestMethod.DELETE)
     @ApiOperation("超级管理员查询所有管理员")
     public Result delete(@PathVariable String adminId, HttpServletRequest request) {

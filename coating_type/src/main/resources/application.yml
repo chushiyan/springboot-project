@@ -1,0 +1,67 @@
+server:
+  port: 10005
+
+spring:
+  application:
+    name: coating-type
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/coating?characterEncoding=utf-8
+    username: root
+    password: "@YHDJ_4587+jidk#dhie&"
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+
+  # SpringMVC上传文件配置
+  servlet:
+    multipart:
+      # 默认支持文件上传.
+      enabled: true
+      # 支持文件写入磁盘
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location:
+      # 最大支持文件大小
+      max-file-size: 10MB
+      # 最大支持请求大小
+      max-request-size: 30MB
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10000/eureka
+  instance:
+    prefer-ip-address: true
+
+# 自定义的配置
+fastdfs:
+  connect_timeout_in_millisecond: 5000
+  network_timeout_in_millisecond: 30000
+  charset: UTF-8
+  tracker_servers: 45.76.46.123:22122
+  nginx_url: http://45.76.46.123:8888/  # 注意末尾要加上/ ，因为fastdfs返回的文件id开头没有/
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+# ribbon的超时时间
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 120000
+
+
+jwt:
+  config:
+    key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
+    ttl: 1800000

@@ -1,20 +1,31 @@
 package com.kennatech.picture.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-
 public class Type implements Serializable {
     @Id
     private String id;// varchar(100) not null,
     private String name;// varchar(20) comment '二级分类的名称',
     private String title;// varchar(50),
+
+
+    @ManyToOne(targetEntity = Category.class)
+    @JoinColumn(name = "parent_id", referencedColumnName = "id")
     private Category parent;// char(10) comment '外键，所属的大类',
+
+    @Column(name = "picture_url")
     private String pictureUrl;// varchar(200) comment '图标url',
+
     private String description;// varchar(1000),
+
     private String status;// int default 1 comment '二级分类的状态，0：弃用    1：使用中',
+
+    @OneToMany(mappedBy = "type")
+    private Set<Picture> pictures = new HashSet<Picture>();
 
     public Type() {
     }
@@ -79,4 +90,5 @@ public class Type implements Serializable {
     public String toString() {
         return this.name;
     }
+
 }

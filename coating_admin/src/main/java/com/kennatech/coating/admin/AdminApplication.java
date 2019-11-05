@@ -1,6 +1,7 @@
 package com.kennatech.coating.admin;
 
 import com.kennatech.coating.utils.IdWorker;
+import com.kennatech.coating.utils.JwtInterceptor;
 import com.kennatech.coating.utils.JwtUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,11 @@ public class AdminApplication {
     @Bean
     public JwtUtil jwtUtil(){
         return new JwtUtil();
+    }
+
+    @Bean
+    public JwtInterceptor jwtInterceptor(){
+        return new JwtInterceptor();
     }
 
 

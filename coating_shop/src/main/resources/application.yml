@@ -7,7 +7,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/coating?characterEncoding=utf-8
     username: root
-    password: "*CHU_shi_YAN@128"
+    password: "@YHDJ_4587+jidk#dhie&"
 eureka:
   client:
     registry-fetch-interval-seconds: 5    # TODO 部署后需要删除
@@ -19,4 +19,4 @@ eureka:
 jwt:
   config:
     key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
-    ttl: 3600000
+    ttl: 1800000

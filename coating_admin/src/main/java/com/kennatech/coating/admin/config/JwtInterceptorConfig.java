@@ -1,6 +1,6 @@
 package com.kennatech.coating.admin.config;
 
-import com.kennatech.coating.admin.interceptor.JwtInterceptor;
+import com.kennatech.coating.utils.JwtInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 public class JwtInterceptorConfig extends WebMvcConfigurationSupport {
+
     @Autowired
     private JwtInterceptor jwtInterceptor;
 
@@ -16,7 +17,7 @@ public class JwtInterceptorConfig extends WebMvcConfigurationSupport {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
 //                .addPathPatterns("/**")
-                .addPathPatterns("/admin/**")
+                .addPathPatterns("/**")
                 .excludePathPatterns("/admin/login/**")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**")
                 .excludePathPatterns("/swagger-resources/**")

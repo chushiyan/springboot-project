@@ -18,14 +18,14 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/appointment")
+//@RequestMapping("/appointment")
 public class AppointmentController {
 
     @Autowired
     private AppointmentService appointmentService;
 
     /**
-     * 添加预
+     * 添加预约
      */
     @RequestMapping(method = RequestMethod.POST)
     public Result add(@RequestBody QueryVo queryVo) {

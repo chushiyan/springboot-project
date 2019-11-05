@@ -1,6 +1,7 @@
 package com.kennatech.coating.appointment;
 
 import com.kennatech.coating.utils.IdWorker;
+import com.kennatech.coating.utils.JwtInterceptor;
 import com.kennatech.coating.utils.JwtUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,5 +24,9 @@ public class AppointmentApplication {
     @Bean
     public JwtUtil jwtUtil(){
         return new JwtUtil();
+    }
+
+    public JwtInterceptor jwtInterceptor(){
+        return new JwtInterceptor();
     }
 }

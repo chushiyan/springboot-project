@@ -31,3 +31,31 @@ zuul:   #  网关路由
     coating-picture:
       path: /picture/**
       serviceId: coating-picture
+
+    coating-filesystem:
+      path: /filesystem/**
+      serviceId: coating-filesystem
+
+    coating-type:
+      path: /service/**
+      serviceId: coating-type
+
+    coating-tag:
+      path: /tag/**
+      serviceId: coating-tag
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+# ribbon的超时时间
+ribbon:
+  ConnectTimeout: 6000
+  ReadTimeout: 6000

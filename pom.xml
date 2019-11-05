@@ -15,6 +15,9 @@
         <module>coating_manager</module>
         <module>coating_web</module>
         <module>coating_shop</module>
+        <module>coating_type</module>
+        <module>coating_filesystem</module>
+        <module>coating_tag</module>
     </modules>
 
     <parent>

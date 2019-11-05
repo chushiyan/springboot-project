@@ -2,15 +2,21 @@ package com.kennatech.picture.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Tag  implements Serializable {
+public class Tag implements Serializable {
 
     @Id
     private String id;      // varchar(100) not null,
     private String name;    // varchar(100),
     private String status;  // int default 1,
+
+    @ManyToMany(mappedBy = "tags")
+    private Set<Picture> pictures = new HashSet<Picture>();
 
     public Tag() {
     }
@@ -43,6 +49,14 @@ public class Tag  implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     @Override

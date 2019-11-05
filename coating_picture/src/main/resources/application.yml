@@ -1,9 +1,38 @@
 server:
-  port: 10003
+  port: 10004
 
 spring:
   application:
     name: coating-picture
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/coating?characterEncoding=utf-8
+    username: root
+    password: "@YHDJ_4587+jidk#dhie&"
+  jpa:
+    database: MySQL
+    show-sql: true
+    generate-ddl: true
+
+  # SpringMVC上传文件配置
+  servlet:
+    multipart:
+      # 默认支持文件上传.
+      enabled: true
+      # 支持文件写入磁盘
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location:
+      # 最大支持文件大小
+      max-file-size: 10MB
+      # 最大支持请求大小
+      max-request-size: 30MB
+
+#  data:
+#    mongodb:
+#      database: xc_fs
+#      uri: mongodb://root:123@127.0.0.1:27017
 
 eureka:
   client:
@@ -11,3 +40,26 @@ eureka:
       defaultZone: http://127.0.0.1:10000/eureka
   instance:
     prefer-ip-address: true
+
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+# ribbon的超时时间
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 6000
+
+jwt:
+  config:
+    key: 0dfieojk568798HJSryrAJfddf1HDIui978683041jdORUFEdlkfs44dlfkedJISda487DFfAJLKFEOJOkhssdfleko444HDJgjfhekjlsjdkHOD89631456fiehJGHkjenxlcioPTR4454QXVBNMlkdf4565656oGtrygjeh178kjkhuedRRFDLGKR
+
+

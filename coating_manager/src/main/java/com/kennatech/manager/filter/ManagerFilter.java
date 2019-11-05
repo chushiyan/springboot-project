@@ -58,10 +58,22 @@ public class ManagerFilter extends ZuulFilter {
             return null;
         }
 
+        // 如果url带有list（所有微服务的查询所有），就放行
+        if (request.getRequestURI().indexOf("list") > 0) {
+            return null;
+        }
+
+        // 如果url带有item（所有微服务的findById），就放行
+        if (request.getRequestURI().indexOf("item") > 0) {
+            return null;
+        }
+
+
         // 如果是登录，就放行
         if (request.getRequestURI().indexOf("login") > 0) {
             return null;
         }
+
 
         // 得到头信息
         String header = request.getHeader("Authorization");
@@ -72,7 +84,7 @@ public class ManagerFilter extends ZuulFilter {
                     //  检验jwt令牌
                     Claims claims = jwtUtil.parseJWT(token);
                     String roles = (String) claims.get("roles");
-                    if (roles.equals("super") ||  roles.equals("general") ) {
+                    if (roles.equals("super") || roles.equals("general")) {
                         // 把头信息转发下去，并且放行
                         requestContext.addZuulRequestHeader("Authorization", header);
                         return null;
@@ -88,8 +100,17 @@ public class ManagerFilter extends ZuulFilter {
         // 然后通过 setResponseStatusCode(403) 设置了其返回的错误码
         requestContext.setSendZuulResponse(false);// 终止运行
         requestContext.setResponseStatusCode(403);
-        requestContext.setResponseBody("權限不足");
-        requestContext.getResponse().setContentType("text/html;charset=utf-8");
+
+        String result = "{ \"flag\": false,\n" +
+                "    \"code\": 20001,\n" +
+                "    \"message\": \"權限不足\"}";
+
+//        requestContext.setResponseBody("權限不足");
+//        requestContext.getResponse().setContentType("text/html;charset=utf-8");
+        requestContext.setResponseBody(result);
+
+        requestContext.getResponse().setContentType("text/json;charset=utf-8");
+
         return null;
     }
 }
